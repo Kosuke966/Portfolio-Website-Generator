@@ -1,78 +1,51 @@
-const themeSwitch = document.getElementById("themeSwitch");
-const form = document.getElementById("resumeForm");
-const preview = document.getElementById("resumePreview");
-const downloadBtn = document.getElementById("downloadBtn");
+fetch("portfolio.json")
+  .then(res => res.json())
+  .then(data => renderPortfolio(data))
+  .catch(err => console.error("Failed to load portfolio data", err));
 
-// Theme toggle
-themeSwitch.addEventListener("change", () => {
-  document.body.classList.toggle("light", themeSwitch.checked);
-});
+function renderPortfolio(data) {
+  document.title = `${data.name} | Portfolio`;
 
-// Render resume
-function renderResume(data) {
-  preview.innerHTML = `
-    <div class="resume-section">
-      <h1>${data.name}</h1>
-      <h3>${data.title || ""}</h3>
-      <p>${data.about || ""}</p>
-      <p>Email: ${data.email || ""} | Phone: ${data.phone || ""}</p>
-    </div>
+  document.getElementById("hero").innerHTML = `
+    <h1>${data.name}</h1>
+    <p>${data.title}</p>
+  `;
 
-    <div class="resume-section">
-      <h2>Skills</h2>
-      <div class="skills">${(data.skills || []).map(s => `<span>${s}</span>`).join("")}</div>
-    </div>
+  document.getElementById("about").innerHTML = `
+    <h2>About</h2>
+    <p>${data.about}</p>
+  `;
 
-    <div class="resume-section">
-      <h2>Experience</h2>
-      ${(data.experience || []).map(e => `
-        <div class="card">
-          <strong>${e.role}</strong> — ${e.company} (${e.period})
-        </div>
-      `).join("")}
-    </div>
-
-    <div class="resume-section">
-      <h2>Projects</h2>
-      ${(data.projects || []).map(p => `
-        <div class="card">
-          <strong>${p.name}</strong>
-          <p>${p.description}</p>
-          <a href="${p.link}" target="_blank">${p.link}</a>
-        </div>
-      `).join("")}
+  document.getElementById("skills").innerHTML = `
+    <h2>Skills</h2>
+    <div class="skills">
+      ${data.skills.map(skill => `<span>${skill}</span>`).join("")}
     </div>
   `;
-}
 
-// Form submit
-form.addEventListener("submit", e => {
-  e.preventDefault();
+  document.getElementById("projects").innerHTML = `
+    <h2>Projects</h2>
+    ${data.projects.map(p => `
+      <div class="card">
+        <h3>${p.name}</h3>
+        <p>${p.description}</p>
+        <a href="${p.link}" target="_blank">View Project</a>
+      </div>
+    `).join("")}
+  `;
 
-  const data = {
-    name: document.getElementById("name").value,
-    title: document.getElementById("title").value,
-    email: document.getElementById("email").value,
-    phone: document.getElementById("phone").value,
-    about: document.getElementById("about").value,
-    skills: document.getElementById("skills").value.split(",").map(s => s.trim()).filter(Boolean),
-    experience: JSON.parse(document.getElementById("experience").value || "[]"),
-    projects: JSON.parse(document.getElementById("projects").value || "[]")
-  };
+  document.getElementById("experience").innerHTML = `
+    <h2>Experience</h2>
+    ${data.experience.map(e => `
+      <div class="card">
+        <strong>${e.role}</strong> — ${e.company}
+        <div>${e.period}</div>
+      </div>
+    `).join("")}
+  `;
 
-  renderResume(data);
-});
-
-// Download as PDF using html2pdf.js
-downloadBtn.addEventListener("click", () => {
-  const element = document.getElementById("resumePreview");
-  const filename = `${document.getElementById("name").value || "resume"}.pdf`;
-
-  html2pdf().set({
-    margin:       0.5,
-    filename:     filename,
-    image:        { type: 'jpeg', quality: 0.98 },
-    html2canvas:  { scale: 2 },
-    jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-  }).from(element).save();
-});
+  document.getElementById("contact").innerHTML = `
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:${data.contact.email}">${data.contact.email}</a></p>
+    <p>GitHub: <a href="${data.contact.github}" target="_blank">${data.contact.github}</a></p>
+  `;
