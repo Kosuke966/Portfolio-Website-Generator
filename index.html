@@ -3,30 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio Generator</title>
+  <title>Interactive Resume Builder</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>Portfolio Generator</h1>
-    <div class="controls">
-      <label class="theme-toggle">
-        🌞 / 🌙
-        <input type="checkbox" id="themeSwitch" />
-      </label>
-      <input type="file" id="fileInput" accept=".json" />
-    </div>
+    <h1>Resume Builder</h1>
+    <label class="theme-toggle">
+      🌞 / 🌙
+      <input type="checkbox" id="themeSwitch" />
+    </label>
   </header>
 
-  <main id="app">
-    <section id="hero"></section>
-    <section id="about"></section>
-    <section id="skills"></section>
-    <section id="projects"></section>
-    <section id="experience"></section>
-    <section id="contact"></section>
+  <main>
+    <section id="form-section">
+      <h2>Enter Your Details</h2>
+      <form id="resumeForm">
+        <label>Name: <input type="text" id="name" placeholder="John Doe" required /></label>
+        <label>Title: <input type="text" id="title" placeholder="Frontend Developer" /></label>
+        <label>Email: <input type="email" id="email" placeholder="email@example.com" /></label>
+        <label>Phone: <input type="text" id="phone" placeholder="+1 123 456 7890" /></label>
+        <label>About: <textarea id="about" placeholder="A short bio..."></textarea></label>
+        <label>Skills (comma-separated): <input type="text" id="skills" placeholder="HTML, CSS, JS" /></label>
+        <label>Experience (JSON format): <textarea id="experience" placeholder='[{"role":"Frontend Developer","company":"XYZ","period":"2023-Present"}]'></textarea></label>
+        <label>Projects (JSON format): <textarea id="projects" placeholder='[{"name":"Portfolio","description":"My website","link":"https://github.com"}]'></textarea></label>
+        <button type="submit">Generate Resume</button>
+      </form>
+    </section>
+
+    <section id="preview-section">
+      <h2>Live Preview</h2>
+      <div id="resumePreview"></div>
+      <button id="downloadBtn">Download as PDF</button>
+    </section>
   </main>
 
+  <!-- html2pdf.js library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
