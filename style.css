@@ -1,0 +1,51 @@
+:root {
+  --bg: #0f172a;
+  --text: #e5e7eb;
+  --accent: #38bdf8;
+  --card: #1e293b;
+  --font: system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+h1, h2 {
+  color: white;
+}
+
+.card {
+  background: var(--card);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.skills span {
+  display: inline-block;
+  background: var(--accent);
+  color: #000;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  margin: 0.3rem;
+  font-size: 0.9rem;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
