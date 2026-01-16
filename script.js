@@ -103,4 +103,3 @@ function renderPortfolio(data) {
     ` : "<p>No contact info</p>"}
   `;
 }
-
