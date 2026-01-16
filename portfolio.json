@@ -1,0 +1,24 @@
+{
+  "name": "Alex Doe",
+  "title": "Frontend Developer",
+  "about": "I build clean, accessible, and performant web interfaces.",
+  "skills": ["HTML", "CSS", "JavaScript", "GitHub"],
+  "projects": [
+    {
+      "name": "Portfolio Generator",
+      "description": "A JSON-driven static portfolio website",
+      "link": "https://github.com/yourname/portfolio-generator"
+    }
+  ],
+  "experience": [
+    {
+      "company": "Startup X",
+      "role": "Frontend Developer",
+      "period": "2023 – Present"
+    }
+  ],
+  "contact": {
+    "email": "alex@email.com",
+    "github": "https://github.com/yourname"
+  }
+}
