@@ -12,6 +12,26 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--card);
+  border-bottom: 1px solid var(--accent);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+input[type="file"] {
+  color: var(--text);
 }
 
 main {
@@ -25,7 +45,7 @@ section {
 }
 
 h1, h2 {
-  color: white;
+  color: var(--text);
 }
 
 .card {
@@ -49,3 +69,12 @@ a {
   color: var(--accent);
   text-decoration: none;
 }
+
+/* Light theme */
+body.light {
+  --bg: #fdfdfd;
+  --text: #111827;
+  --accent: #38bdf8;
+  --card: #e5e7eb;
+}
+
