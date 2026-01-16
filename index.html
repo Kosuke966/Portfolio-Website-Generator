@@ -3,11 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio</title>
-  <meta name="description" content="Generated portfolio website" />
+  <title>Portfolio Generator</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header>
+    <h1>Portfolio Generator</h1>
+    <div class="controls">
+      <label class="theme-toggle">
+        Light /Dark
+        <input type="checkbox" id="themeSwitch" />
+      </label>
+      <input type="file" id="fileInput" accept=".json" />
+    </div>
+  </header>
+
   <main id="app">
     <section id="hero"></section>
     <section id="about"></section>
